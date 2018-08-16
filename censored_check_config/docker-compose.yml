@@ -4,5 +4,5 @@ services:
     s13-hass-check_config:
         image: censored/hassio-addon-amd64-censored_check_config
         volumes:
-          - "C:/temp/ha-dev/check_config/data:/data"
-          - "C:/temp/ha-dev/homeassistant:/config"
+          - "./data:/data"
+          - "../homeassistant:/config"
