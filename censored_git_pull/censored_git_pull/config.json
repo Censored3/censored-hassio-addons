@@ -1,0 +1,42 @@
+{
+  "name": "Git pull_censored",
+  "version": "4.8.2",
+  "slug": "censored_git_pull",
+  "description": "Simple git pull to update the local configuration -- CENSORED BUGFIXED",
+  "url": "https://github.com/Censored3/hassio-addons",
+  "startup": "services",
+  "boot": "manual",
+  "hassio_api": true,
+  "map": ["config:rw"],
+  "options": {
+    "deployment_key": [],
+    "deployment_key_protocol": "rsa",
+    "deployment_user": "",
+    "deployment_password": "",
+    "git_branch": "master",
+    "git_command": "pull",
+    "git_remote": "origin",
+    "repository": null,
+    "auto_restart": false,
+    "repeat": {
+      "active": false,
+      "interval": 300
+    }
+  },
+  "schema": {
+    "deployment_key": ["str"],
+    "deployment_key_protocol": "match(rsa|dsa|ecdsa|ed25519|rsa)",
+    "deployment_user": "str",
+    "deployment_password": "str",
+    "git_branch": "str",
+    "git_command": "match(pull|reset)",
+    "git_remote": "str",
+    "repository": "match((?:.+):(\/\/)?(.*?)(\\.git)(\/?|\\#[-\\d\\w._]+?))",
+    "auto_restart": "bool",
+    "repeat": {
+      "active": "bool",
+      "interval": "int"
+    }
+  },
+  "image": "censored/hassio-addon-{arch}-censored_git_pull"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Check Home Assistant configuration",
+  "version": "0.8",
+  "slug": "censored_check_config",
+  "description": "Check current Home Assistant configuration against a new version",
+  "url": "https://home-assistant.io/addons/check_config/",
+  "startup": "once",
+  "boot": "manual",
+  "map": ["config", "ssl"],
+  "options": {
+    "version": "latest"
+  },
+  "schema": {
+    "version": "str"
+  },
+  "image": "censored/hassio-addon-{arch}-censored_check_config"
+}
