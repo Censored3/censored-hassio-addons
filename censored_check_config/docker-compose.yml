@@ -3,7 +3,6 @@ version: '3'
 services:
     s13-hass-check_config:
         image: censored/hassio-addon-amd64-censored_check_config
-        #restart: never
         volumes:
           - "C:/temp/ha-dev/check_config/data:/data"
           - "C:/temp/ha-dev/homeassistant:/config"
