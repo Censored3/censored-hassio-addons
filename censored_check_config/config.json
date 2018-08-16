@@ -1,9 +1,9 @@
 {
-  "name": "Check Home Assistant configuration",
+  "name": "Check Home Assistant configuration -- CENSORED BUGFIXED",
   "version": "0.7.1",
   "slug": "censored_check_config",
   "description": "Check current Home Assistant configuration against a new version",
-  "url": "https://home-assistant.io/addons/check_config/",
+  "url": "https://github.com/Censored3/hassio-addons",
   "startup": "once",
   "boot": "manual",
   "map": ["config", "ssl"],
