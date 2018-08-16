@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    s13-hass-check_config:
+        image: censored/hassio-addon-amd64-censored_check_config
+        volumes:
+          - "./data:/data"
+          - "../homeassistant:/config"
