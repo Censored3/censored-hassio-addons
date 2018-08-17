@@ -5,5 +5,5 @@ services:
         image: censored/hassio-addon-amd64-censored_check_config
         working_dir: "//C/temp/ha-dev/check_config/"
         volumes:
-          - "./data:/data"
+          - "./options.json:/data/options.json"
           - "../homeassistant:/config"
