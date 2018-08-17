@@ -1,6 +1,6 @@
 {
   "name": "Git pull_censored",
-  "version": "4.8.2",
+  "version": "4.8.3",
   "slug": "censored_git_pull",
   "description": "Simple git pull to update the local configuration -- CENSORED BUGFIXED",
   "url": "https://github.com/Censored3/hassio-addons",
