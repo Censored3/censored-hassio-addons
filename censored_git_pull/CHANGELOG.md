@@ -1,6 +1,12 @@
 # Changelog
 
-## 4.8.1 -- CENSORED
+## 4.8.4 -- CENSORED
+- Allow to stay on currently checked out branch
+
+## 4.8.3 -- CENSORED
+- Proper "active" key detection
+
+## 4.8.2 -- CENSORED
 - Fix git for proper repo detection
 
 ## 4.8
