@@ -5,7 +5,7 @@ FROM $BUILD_FROM
 ENV LANG C.UTF-8
 
 # Setup base
-RUN apk add --no-cache jq python3 \
+RUN apk add --no-cache jq libffi-dev python3 \
     && pip3 install --no-cache --upgrade pip
 
 # Copy data
