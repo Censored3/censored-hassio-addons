@@ -1,3 +1,0 @@
-{
-	"cmd": ["docker-compose.exe", "-f", "C:\\temp\\ha-dev\\check_config\\docker-compose.yml", "up"]
-}
