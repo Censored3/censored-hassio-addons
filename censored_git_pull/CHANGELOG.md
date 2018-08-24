@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.8.5 -- CENSORED
+- Fix branch switching for a new, yet unknown branch
+- Add option git_prune to also prune old branches
+
 ## 4.8.4 -- CENSORED
 - Allow to stay on currently checked out branch
 
