@@ -138,9 +138,9 @@ function git-synchronize {
               # do a git fetch first to update branches and cleanup old if requested
               if [ "$GIT_PRUNE" == "true" ]
               then
-                GIT_PRUNE = "-p"
+                GIT_PRUNE="-p"
               else
-                GIT_PRUNE = ""
+                GIT_PRUNE=""
               fi
               git fetch $GIT_PRUNE $GIT_REMOTE || { echo "[Error] Git fetch failed"; exit 1; }
               git checkout "$GIT_BRANCH" || { echo "[Error] Git checkout failed"; exit 1; }
