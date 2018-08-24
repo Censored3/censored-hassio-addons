@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$1" == "test"]; then
+if [ "$1" == "test" ]; then
   BUILDARCH="--amd64"
 else
   BUILDARCH="--all"
