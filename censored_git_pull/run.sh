@@ -129,7 +129,9 @@ function git-synchronize {
 
             # Do we switch branches?
             GIT_CURRENT_BRANCH=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
-            if [ -z "$GIT_BRANCH" ] || [ "$GIT_BRANCH" != "$GIT_CURRENT_BRANCH" ]; then
+            if [ -z "$GIT_BRANCH" ] || [ "$GIT_BRANCH" == "$GIT_CURRENT_BRANCH" ]; then
+              echo "[Info] Staying on currently checked out branch: $GIT_CURRENT_BRANCH..."
+            else
               echo "[Info] Switching branches - start git checkout of branch $GIT_BRANCH..."
               # Prune if configured
               if [ "$GIT_PRUNE" == "true" ]
@@ -138,8 +140,6 @@ function git-synchronize {
               fi
               git checkout "$GIT_BRANCH" || { echo "[Error] Git checkout failed"; exit 1; }
               GIT_CURRENT_BRANCH=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
-            else
-              echo "[Info] Staying on currently checked out branch: $GIT_CURRENT_BRANCH..."
             fi
 
             # Pull or reset depending on user preference
