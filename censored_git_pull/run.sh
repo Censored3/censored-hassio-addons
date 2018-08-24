@@ -157,8 +157,6 @@ function git-synchronize {
                     ;;
                 reset)
                     echo "[Info] Start git reset..."
-                    #replaced by git fetch before checkout
-                    #git fetch "$GIT_REMOTE" "$GIT_CURRENT_BRANCH" || { echo "[Error] Git fetch failed"; exit 1; }
                     git reset --hard "$GIT_REMOTE"/"$GIT_CURRENT_BRANCH" || { echo "[Error] Git reset failed"; exit 1; }
                     ;;
                 *)
