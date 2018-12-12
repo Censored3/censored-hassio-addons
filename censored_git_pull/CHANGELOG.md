@@ -1,17 +1,20 @@
 # Changelog
 
-## 4.8.5 -- CENSORED
-- Fix branch switching for a new, yet unknown branch
-- Add option git_prune to also prune old branches
+## 6.1
+- Bugfix in git diff command while comparing branches
 
-## 4.8.4 -- CENSORED
-- Allow to stay on currently checked out branch
+## 6
+- Allow to disable Home Assistant restart for specific file changes
 
-## 4.8.3 -- CENSORED
-- Proper "active" key detection
+## 5
+- Update Hass.io CLI to 1.4.0
+- Add new API role profile
 
-## 4.8.2 -- CENSORED
-- Fix git for proper repo detection
+## 4.9
+- Fix git repo detection in config-dir - #372
+- Fix repeat option detection - #375
+- Allow to stay on the currently checked out branch - set "git_branch": ""
+- Correct typo
 
 ## 4.8
 - Add option to use git reset instead of git pull
