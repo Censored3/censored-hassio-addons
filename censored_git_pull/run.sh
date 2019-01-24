@@ -182,11 +182,21 @@ function validate-config {
                 CHANGED_FILES=$(git diff "$OLD_COMMIT" "$NEW_COMMIT" --name-only)
                 echo "Changed Files: $CHANGED_FILES"
                 if [ -n "$RESTART_IGNORED_FILES" ]; then
-                    for file in $CHANGED_FILES; do
-                        echo "$RESTART_IGNORED_FILES" | grep -qx "${file}"
-                        if [ $? -eq 1 ] ; then
+                    for changed_file in $CHANGED_FILES; do
+                        $restart_required_file=""
+                        for restart_ignored_file in $RESTART_IGNORED_FILES; do
+                            if [ -z ${restart_ignored_file#*/} ]; then
+                                # file to be ignored is a whole dir
+                                restart_required_file=$(echo "${changed_file}" | grep "^${restart_ignored_file}")
+                            else
+                                restart_required_file=$(echo "${changed_file}" | grep "^${restart_ignored_file}$")
+                            fi
+                            # break on first match
+                            if [ -n "$restart_required_file" ]; then break ; fi
+                        done
+                        if [ -n "$restart_required_file" ]; then
                             DO_RESTART="true"
-                            echo "[Info] Detected Restart Required File $file"
+                            echo "[Info] Detected restart-required file: $changed_file"
                         fi
                     done
                 else
@@ -194,7 +204,7 @@ function validate-config {
                 fi
                 if [ "$DO_RESTART" == "true" ]; then
                     echo "[Info] Restart Home-Assistant"
-                    hassio homeassistant restart 2&> /dev/null
+                    #hassio homeassistant restart 2&> /dev/null
                 else
                     echo "[Info] No Restart Required, only ignored changes detected"
                 fi
