@@ -1,9 +1,9 @@
 {
-  "name": "Git pull - CENSORED",
-  "version": "6.1",
-  "slug": "censored_git_pull",
+  "name": "Git pull",
+  "version": "7.0",
+  "slug": "git_pull",
   "description": "Simple git pull to update the local configuration",
-  "url": "https://github.com/Censored3/hassio-addons",
+  "url": "https://home-assistant.io/addons/git_pull/",
   "startup": "services",
   "boot": "manual",
   "hassio_api": true,
@@ -46,5 +46,5 @@
       "interval": "int"
     }
   },
-  "image": "censored/hassio-addon-{arch}-censored_git_pull"
+  "image": "homeassistant/{arch}-addon-git_pull"
 }
