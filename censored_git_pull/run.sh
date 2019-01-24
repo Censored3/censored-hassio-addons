@@ -204,7 +204,7 @@ function validate-config {
                 fi
                 if [ "$DO_RESTART" == "true" ]; then
                     echo "[Info] Restart Home-Assistant"
-                    #hassio homeassistant restart 2&> /dev/null
+                    hassio homeassistant restart 2&> /dev/null
                 else
                     echo "[Info] No Restart Required, only ignored changes detected"
                 fi
