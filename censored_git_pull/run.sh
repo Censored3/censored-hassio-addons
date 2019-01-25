@@ -126,13 +126,13 @@ function git-synchronize {
 
             # Always do a fetch to update repos
             echo "[Info] Start git fetch..."
-            git fetch "$GIT_REMOTE" || { echo "[Error] Git fetch failed"; exit 1; }
+            git fetch "$GIT_REMOTE" || { echo "[Error] Git fetch failed"; return 1; }
 
             # Prune if configured
             if [ "$GIT_PRUNE" == "true" ]
             then
               echo "[Info] Start git prune..."
-              git prune || { echo "[Error] Git prune failed"; exit 1; }
+              git prune || { echo "[Error] Git prune failed"; return 1; }
             fi
 
             # Do we switch branches?
@@ -149,11 +149,11 @@ function git-synchronize {
             case "$GIT_COMMAND" in
                 pull)
                     echo "[Info] Start git pull..."
-                    git pull || { echo "[Error] Git pull failed"; exit 1; }
+                    git pull || { echo "[Error] Git pull failed"; return 1; }
                     ;;
                 reset)
                     echo "[Info] Start git reset..."
-                    git reset --hard "$GIT_REMOTE"/"$GIT_CURRENT_BRANCH" || { echo "[Error] Git reset failed"; exit 1; }
+                    git reset --hard "$GIT_REMOTE"/"$GIT_CURRENT_BRANCH" || { echo "[Error] Git reset failed"; return 1; }
                     ;;
                 *)
                     echo "[Error] Git command is not set correctly. Should be either 'reset' or 'pull'"
@@ -185,14 +185,14 @@ function validate-config {
                     for changed_file in $CHANGED_FILES; do
                         restart_required_file=""
                         for restart_ignored_file in $RESTART_IGNORED_FILES; do
-                            if [ -z "${restart_ignored_file#*/}" ]; then
+                            if [ -d "$restart_ignored_file" ]; then
                                 # file to be ignored is a whole dir
                                 restart_required_file=$(echo "${changed_file}" | grep "^${restart_ignored_file}")
                             else
                                 restart_required_file=$(echo "${changed_file}" | grep "^${restart_ignored_file}$")
                             fi
                             # break on first match
-                            if [ -n "$restart_required_file" ]; then break ; fi
+                            if [ -n "$restart_required_file" ]; then break; fi
                         done
                         if [ -z "$restart_required_file" ]; then
                             DO_RESTART="true"
@@ -204,7 +204,7 @@ function validate-config {
                 fi
                 if [ "$DO_RESTART" == "true" ]; then
                     echo "[Info] Restart Home-Assistant"
-                    hassio homeassistant restart 2&> /dev/null
+                    #hassio homeassistant restart 2&> /dev/null
                 else
                     echo "[Info] No Restart Required, only ignored changes detected"
                 fi
@@ -227,8 +227,9 @@ cd /config || { echo "[Error] Failed to cd into /config"; exit 1; }
 while true; do
     check-ssh-key
     setup-user-password
-    git-synchronize
-    validate-config
+    if git-synchronize ; then
+        validate-config
+    fi
      # do we repeat?
     if [ ! "$REPEAT_ACTIVE" == "true" ]; then
         exit 0
